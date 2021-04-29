@@ -1,16 +1,12 @@
 CC=g++
-FLAGS=-std=c++17 -Wall -Werror -Wextra -Wno-unused-variable
 
-all: main
+FLAGS=-std=c++17 -Wall -pedantic -Wextra -fsanitize=address
 
-main: test.o
-	$(CC) $(FLAGS) test.o -o main
-
-test.o: test.cpp serializer.hpp serializer.tpp
-	$(CC) $(FLAGS) test.cpp -c
-
-test: main
-	./main
+all: 
+	$(CC) $(FLAGS) test.cpp -o test_file
 
 clean:
-	rm -f *.o main
+	rm -f *.o test_file
+
+test: 
+	./test_file
